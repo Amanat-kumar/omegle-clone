@@ -6,18 +6,26 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 public class CheckSecurity {
+
+	private final JwtAuthFilter jwtAuthFilter;
+
+	public CheckSecurity(JwtAuthFilter jwtAuthFilter) {
+		this.jwtAuthFilter = jwtAuthFilter;
+	}
+
 	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http.authorizeHttpRequests((requests) -> requests.requestMatchers("/h2-console/**").permitAll() // allow H2
-																										// console
-				.anyRequest().authenticated()).csrf((csrf) -> csrf.ignoringRequestMatchers("/h2-console/**")) // disable
-																												// CSRF
-																												// for
-																												// H2
-				.headers((headers) -> headers.frameOptions().sameOrigin()); // allow frames from same origin
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+		http.csrf(csrf -> csrf.disable())
+				.authorizeHttpRequests(auth -> auth
+						.requestMatchers("/api/app-users/login", "/api/app-users/register", "/h2-console/**")
+						.permitAll().anyRequest().authenticated())
+				.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+
+		http.headers(headers -> headers.frameOptions().sameOrigin());
 
 		return http.build();
 	}
