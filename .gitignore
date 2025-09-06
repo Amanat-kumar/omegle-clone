@@ -1,0 +1,59 @@
+# ------------------------
+# Build outputs
+# ------------------------
+target/
+build/
+!**/src/main/**/target/
+!**/src/test/**/target/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# ------------------------
+# Maven wrapper
+# ------------------------
+.mvn/wrapper/maven-wrapper.jar
+
+# ------------------------
+# IDEs and Tools
+# ------------------------
+
+# Eclipse / STS
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# VS Code
+.vscode/
+
+# ------------------------
+# Logs & Temp files
+# ------------------------
+*.log
+
+# OS generated
+.DS_Store
+Thumbs.db
+
+# ------------------------
+# Application configs (sensitive info)
+# ------------------------
+application-*.yml
+application-*.properties
+.env
