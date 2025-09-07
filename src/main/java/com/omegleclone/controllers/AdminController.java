@@ -1,6 +1,6 @@
 package com.omegleclone.controllers;
 
-import com.omegleclone.model.ChatSession;
+
 import com.omegleclone.model.Report;
 import com.omegleclone.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
