@@ -1,5 +1,6 @@
 package com.omegleclone.service;
 
+import com.omegleclone.dto.LoginResponse;
 import com.omegleclone.model.AppUser;
 import com.omegleclone.repository.AppUserRepository;
 import com.omegleclone.security.JwtUtil;
@@ -27,18 +28,18 @@ public class AppUserService {
 	@Transactional
 	public AppUser registerUser(AppUser user) {
 		// Encrypt the password
-		user.setPasswordHash(passwordEncoder.encode(user.getPasswordHash()));
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		return appUserRepository.save(user);
 	}
 
 	// Login user (here you'd return a JWT token in a real application)
-	public String loginUser(AppUser user) {
+	public LoginResponse loginUser(AppUser user) {
 		AppUser foundUser = appUserRepository.findByUsername(user.getUsername())
 				.orElseThrow(() -> new RuntimeException("User not found"));
 
-		if (passwordEncoder.matches(user.getPasswordHash(), foundUser.getPasswordHash())) {
+		if (passwordEncoder.matches(user.getPassword(), foundUser.getPassword())) {
 			// Return a JWT in a real application
-			return jwtUtil.generateToken(foundUser.getUsername());
+			return jwtUtil.generateToken(foundUser);
 		} else {
 			throw new RuntimeException("Invalid credentials");
 		}

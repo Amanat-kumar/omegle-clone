@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS app_user (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(255) NOT NULL UNIQUE,
     email VARCHAR(255) NOT NULL UNIQUE,
-    password_hash VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS reports (
 );
 
 -- Insert Two Dummy Users for Testing
-INSERT INTO app_user (username, email, password_hash) 
+INSERT INTO app_user (username, email, password) 
 VALUES 
 ('testuser1', 'testuser1@example.com', 'hashedpassword1'), 
 ('testuser2', 'testuser2@example.com', 'hashedpassword2');

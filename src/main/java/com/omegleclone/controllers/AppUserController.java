@@ -1,5 +1,6 @@
 package com.omegleclone.controllers;
 
+import com.omegleclone.dto.LoginResponse;
 import com.omegleclone.model.AppUser;
 import com.omegleclone.service.AppUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class AppUserController {
 
     // Login a user (Return JWT token in a real application)
     @PostMapping("/login")
-    public String loginUser(@RequestBody AppUser user) {
+    public LoginResponse loginUser(@RequestBody AppUser user) {
         return appUserService.loginUser(user);  // Generate and return JWT in real-world use
     }
 
