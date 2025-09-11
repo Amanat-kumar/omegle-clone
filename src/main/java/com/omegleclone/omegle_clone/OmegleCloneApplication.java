@@ -7,7 +7,7 @@ import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@ComponentScan(basePackages = {"com.omegleclone.controllers", "com.omegleclone.service", "com.omegleclone.security"})
+@ComponentScan(basePackages = {"com.omegleclone"})
 @EnableJpaRepositories("com.omegleclone.repository")
 @EntityScan("com.omegleclone.model")
 @SpringBootApplication

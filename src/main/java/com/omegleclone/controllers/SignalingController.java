@@ -1,5 +1,6 @@
 package com.omegleclone.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
@@ -7,11 +8,9 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class SignalingController {
 
-	private final SimpMessagingTemplate messagingTemplate;
-
-	public SignalingController(SimpMessagingTemplate messagingTemplate) {
-		this.messagingTemplate = messagingTemplate;
-	}
+	
+	@Autowired
+	private SimpMessagingTemplate messagingTemplate;
 
 	// Handle signaling messages (offer/answer/ICE)
 	@MessageMapping("/signal/{sessionId}")
