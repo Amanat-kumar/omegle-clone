@@ -11,7 +11,7 @@ import lombok.ToString;
 @ToString
 public class LoginResponse {
 
-	String userId;
+	Long userId;
 	Date issueAt;
 	Date expireIn;
 	String token;

@@ -27,7 +27,7 @@ public class JwtUtil {
 		Date issuedAt = new Date(System.currentTimeMillis());
 		Date expiration = new Date(System.currentTimeMillis() + EXPIRATION_TIME);
 
-		loginResponse.setUserId(foundUser.getUsername());
+		loginResponse.setUserId(foundUser.getId());
 		loginResponse.setIssueAt(issuedAt);
 		loginResponse.setExpireIn(expiration);
 
