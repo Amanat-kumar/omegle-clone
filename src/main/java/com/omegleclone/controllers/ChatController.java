@@ -16,8 +16,8 @@ public class ChatController {
 
     // Start a new random video chat session
     @PostMapping("/start")
-    public ChatSession startChat() {
-        return chatService.createRandomChatSession();
+    public ChatSession startChat(@RequestParam Long userId) { // Add userId parameter
+        return chatService.createRandomChatSession(userId);
     }
 
     // Get chat session details by ID
